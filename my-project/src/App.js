@@ -1,9 +1,12 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-// import Nav from './components/Nav';
-// import TextForm from './components/TextForm';
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Header from './components/Header';
 import Body from './components/Body';
+import About from './components/About';
+import Contact from './components/Contact';
+import Error from './components/Error';
+import RestaurantMenu from "./components/RestaurantMenu";
 
 
 // function App() {
@@ -27,13 +30,47 @@ import Body from './components/Body';
 
 // export default App;
 
-const App = () => {
+const MainApp = () => {
   return(
     <div className='app'>
         <Header />
-        <Body />
+        <Outlet />
     </div>
   )
 }
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainApp />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <RestaurantMenu />,
+      }
+    ],
+    errorElement: <Error />,
+
+  }
+]);
+
+const App = () => {
+  return (
+    <RouterProvider  router={appRouter} />
+  );
+};
+
 
 export default App;
