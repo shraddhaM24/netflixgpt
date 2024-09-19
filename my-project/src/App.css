@@ -45,3 +45,59 @@
   width: min-content;
 }
 .card-list img{width: 200px; height: 140px;}
+
+/* menu css */
+.resMenu{
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+.rt-cus{
+  background: #f0f0f0;
+  padding: 20px 16px 16px;
+  border-bottom-left-radius: 36px;
+  border-bottom-right-radius: 36px;
+}
+.menu-container{
+  margin: 25px 16px 16px;
+  position: relative;
+}
+.resMenu .menu-container .list-main p.list-name{
+  font-size: 20px;
+  font-weight: 800;
+}
+.border-class{
+  border-bottom: .5px solid #d3d3d3;
+  height: auto;
+  margin: 25px 0;
+}
+.resMenu .menu-container .food-name{
+  display: flex;
+  justify-content: space-between;
+}
+.resMenu .menu-container .food-name .des p.item-price::before{
+  content: "₹";
+  margin-right: 0.1rem;
+}
+
+/* header */
+.header{
+box-shadow: 0 15px 40px -20px rgba(40, 44, 63, .15);
+}
+.header .section-header{
+  position: relative;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header .section-header img{width: 80px;}
+.header .section-header .nav-items ul{
+  display: flex;
+}
+l.header .section-header .nav-items ul i.nav-name {
+  list-style: none;
+  padding-left: 30px;
+}
