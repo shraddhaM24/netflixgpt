@@ -6,6 +6,7 @@ class About extends Component{
 
     constructor(props) {
         super(props)
+
         console.log("Parent Constructor");
     }
 
@@ -20,8 +21,8 @@ class About extends Component{
                 <p>About US</p>
                 {/* <User name={"Shraddha Mistry (function)"} /><br/><hr/> */}
                 <UserClass name={"First"} location={"Mumbai (Class))"} />
-                <UserClass name={"Second"} location={"Mumbai (Class))"} />
-                <UserClass name={"Third"} location={"Mumbai (Class))"} />
+                {/* <UserClass name={"Second"} location={"Mumbai (Class))"} />
+                <UserClass name={"Third"} location={"Mumbai (Class))"} /> */}
             </div>
         )
     }
@@ -37,7 +38,7 @@ class About extends Component{
 //     )
 // };
 
-/*
+/* Mounting
     - Parent Constructor
     - Parent render
         - First constructor
@@ -51,5 +52,27 @@ class About extends Component{
         - Second Mount
     - Parent Mount
 */
+
+/****
+ *
+ * --- MOUNTING ----
+ *
+ * Constructor (dummy)
+ * Render (dummy)
+ *      <HTML Dummy >
+ * Component Did MOunt
+ *      <API Call>
+ *      <this.setState> -> State variable is updated
+ *
+ * ---- UPDATE
+ *
+ *      render(APi data)
+ *      <HTML (new API data>)
+ *      ccomponentDid Update -> when component will be remove i.e go to some other page
+ *
+ *
+ *
+ *
+ */
 
 export default About;
