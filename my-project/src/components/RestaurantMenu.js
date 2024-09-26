@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState(null);
+    // const [resInfo, setResInfo] = useState(null);
     const [openSections, setOpenSections] = useState({}); // Track open/closed state for each section
     const { resId } = useParams();
 
-    useEffect(() => {
-        fetchMenuData();
-    }, []);
+    const resInfo = useRestaurantMenu(resId);
 
-    const fetchMenuData = async () => {
-        const data = await fetch(
-            "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.1894674&lng=72.8533941&restaurantId=" + resId
-        );
-        const jsonData = await data.json();
-        setResInfo(jsonData.data);
-    };
+    // useEffect(() => {
+    //     fetchMenuData();
+    // }, []);
+
+    // const fetchMenuData = async () => {
+    //     const data = await fetch(MENU_API + resId);
+    //     const jsonData = await data.json();
+    //     setResInfo(jsonData.data);
+    // };
 
     if (resInfo === null) return <Shimmer />;
 

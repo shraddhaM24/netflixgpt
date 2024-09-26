@@ -1,103 +1,107 @@
-.App {
-  text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
+/* .App {
+    text-align: center;
+  }
+  
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
   }
-  to {
-    transform: rotate(360deg);
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
-}
-
-.red-card,.shimmer-conatiner{display: flex;flex-wrap: wrap;}
-.card-list, .shimmer-cards {
-  background-color: #f0f0f0;
-  margin: 10px 5px;
-  height: 55vh;
-  width: min-content;
-}
-.card-list img{width: 200px; height: 140px;}
-
-/* menu css */
-.resMenu{
-  max-width: 800px;
-  margin: 0 auto;
-  padding-top: 30px;
-}
-.rt-cus{
-  background: #f0f0f0;
-  padding: 20px 16px 16px;
-  border-bottom-left-radius: 36px;
-  border-bottom-right-radius: 36px;
-}
-.menu-container{
-  margin: 25px 16px 16px;
-  position: relative;
-}
-.resMenu .menu-container .list-main p.list-name{
-  font-size: 20px;
-  font-weight: 800;
-}
-.border-class{
-  border-bottom: .5px solid #d3d3d3;
-  height: auto;
-  margin: 25px 0;
-}
-.resMenu .menu-container .food-name{
-  display: flex;
-  justify-content: space-between;
-}
-.resMenu .menu-container .food-name .des p.item-price::before{
-  content: "₹";
-  margin-right: 0.1rem;
-}
-
-/* header */
-.header{
-box-shadow: 0 15px 40px -20px rgba(40, 44, 63, .15);
-}
-.header .section-header{
-  position: relative;
-  padding: 0 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.header .section-header img{width: 80px;}
-.header .section-header .nav-items ul{
-  display: flex;
-}
-l.header .section-header .nav-items ul i.nav-name {
-  list-style: none;
-  padding-left: 30px;
-}
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .red-card,.shimmer-conatiner{display: flex;flex-wrap: wrap;}
+  .card-list, .shimmer-cards {
+    background-color: #f0f0f0;
+    margin: 10px 5px;
+    height: 55vh;
+    width: min-content;
+  }
+  .card-list img{width: 200px; height: 140px;} */
+  
+  /* menu css */
+  .resMenu{
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+  .rt-cus{
+    background: #f0f0f0;
+    padding: 20px 16px 16px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+  }
+  .menu-container{
+    margin: 25px 16px 16px;
+    position: relative;
+  }
+  .resMenu .menu-container .list-main p.list-name{
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .border-class{
+    border-bottom: .5px solid #d3d3d3;
+    height: auto;
+    margin: 25px 0;
+  }
+  .resMenu .menu-container .food-name{
+    display: flex;
+    justify-content: space-between;
+  }
+  .resMenu .menu-container .food-name .des p.item-price::before{
+    content: "₹";
+    margin-right: 0.1rem;
+  }
+  
+  /* header */
+  /* .header{
+  box-shadow: 0 15px 40px -20px rgba(40, 44, 63, .15);
+  }
+  .header .section-header{
+    position: relative;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header .section-header img{width: 80px;}
+  .header .section-header .nav-items ul{
+    display: flex;
+  }
+  .header .section-header .nav-items ul li.nav-name {
+    list-style: none;
+    padding-left: 30px;
+  } */
