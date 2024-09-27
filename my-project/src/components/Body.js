@@ -1,4 +1,4 @@
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard,{withPromotedLabel} from './RestaurantCard';
 import { useState, useEffect } from 'react';
 // import RestList from './RestList';
 import Shimmer from './Shimmer';
@@ -12,6 +12,8 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardVeg = withPromotedLabel(RestaurantCard);
 
   useEffect(() =>{
     fetchData();
@@ -64,7 +66,9 @@ const Body = () => {
         {
             filteredRestaurant.map((restaurant) => (
                 <Link to={"/restaurant/"+restaurant?.info?.id} key={restaurant?.info.id}>
-                    <RestaurantCard  resData={restaurant?.info} />
+                    {
+                        restaurant?.info?.veg ? ( <RestaurantCardVeg  resData={restaurant?.info} />) : ( <RestaurantCard  resData={restaurant?.info} />)
+                    }
                 </Link>
             ))
         }
