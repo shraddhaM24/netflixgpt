@@ -1,9 +1,23 @@
-import { useState , useEffect} from "react";
+import { useState , useContext} from "react";
 import {Link} from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
-const Header = () =>{
+const Header = (props) =>{
 
   const[btnName,setBtnName] = useState("Login");
+
+  const {loggedInUser} = useContext(UserContext);
+
+  const [mode,setMode] = useState('light');
+    const toogleMode = () => {
+        if(mode === 'light'){
+            setMode('dark');
+            document.body.style.backgroundColor = 'grey';
+        }else{
+            setMode('light');
+            document.body.style.backgroundColor = 'white';
+        }
+    }
   // console.log("Header render");
 
   //if no dependency array => useEffect is called on every render
@@ -21,6 +35,15 @@ const Header = () =>{
         </div>
         <div className='nav-items'>
           <ul className="flex m-4 items-center">
+          <li>
+              {/* <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" 
+              onClick={toogleMode}/>
+              <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label> */}
+                <input type="checkbox" className="sr-only" id="darkmode-toggle" onClick={toogleMode} />
+                <label for="darkmode-toggle" className="toggle">
+                  <span>Toggle dark mode</span>
+                </label>
+            </li>
             <li className="nav-name ml-4"><Link to="/">Home</Link></li>
             <li className="nav-name ml-4"><Link to="/about">About us</Link></li>
             <li className="nav-name ml-4"><Link to="/contact">Contact us</Link></li>
@@ -29,6 +52,7 @@ const Header = () =>{
             <button className="btn-login ml-4" onClick={() => {
                 btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")
             }}>{btnName}</button>
+            <li className="nav-name ml-4 font-bold">{loggedInUser}</li>
           </ul>
         </div>
       </div>

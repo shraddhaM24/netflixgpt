@@ -105,3 +105,44 @@
     list-style: none;
     padding-left: 30px;
   } */
+
+  .toggle {
+    font-size: 1rem;
+    border: .125em solid currentColor;
+    border-radius: 30px;
+    cursor: pointer;
+    display: block;
+    height: 27px;
+    position: relative;
+    width: 60px;
+    margin-bottom: 0;;
+  }
+
+  .toggle span {
+    background-color: currentColor;
+    border-radius: 2em;
+    display: block;
+    height: 1.5em;
+    left: .0px;
+    overflow: hidden;
+    position: absolute;
+    top: .0px;
+    text-indent: -9999px;
+    transition: left .25s;
+    width: 1.5em;
+    z-index: 2;
+  }
+
+  
+.toggle::before,
+.toggle::after {
+  content: '';
+  display: block;
+  border-radius: 1em;
+  position: absolute;
+  z-index: 1;
+}
+
+input:checked ~ .toggle span {
+  left: 35px;
+}

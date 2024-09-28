@@ -1,9 +1,10 @@
 import RestaurantCard,{withPromotedLabel} from './RestaurantCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 // import RestList from './RestList';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from '../utils/UserContext';
 
 const Body = () => {
 
@@ -14,6 +15,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
 
   const RestaurantCardVeg = withPromotedLabel(RestaurantCard);
+
+  const {loggedInUser,setUserName} = useContext(UserContext)
 
   useEffect(() =>{
     fetchData();
@@ -61,6 +64,10 @@ const Body = () => {
                 }>
                 Top Rated Restaurants
             </button>
+            <div className='ml-4'>
+                <label>UserName : </label>
+                <input className="px-3 py-1 border-2 border-black border-solid" type='text' onChange={(e) => setUserName(e.target.value)} value={loggedInUser} />
+            </div>
         </div>
         <div className='red-card flex flex-wrap justify-around'>
         {
