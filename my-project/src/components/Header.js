@@ -11,6 +11,7 @@ const Header = (props) =>{
 
   //subscribing to the store using a selector
   const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems);
 
   const [mode,setMode] = useState('light');
     const toogleMode = () => {
@@ -52,7 +53,7 @@ const Header = (props) =>{
             <li className="nav-name ml-4"><Link to="/about">About us</Link></li>
             <li className="nav-name ml-4"><Link to="/contact">Contact us</Link></li>
             <li className="nav-name ml-4"><Link to="/grocery">Grocery</Link></li>
-            <li className="nav-name ml-4 text-lg font-bold">Cart - ({cartItems.length} items)</li>
+            <li className="nav-name ml-4 text-lg font-bold"><Link to="/cart">🛒({cartItems.length})</Link></li>
             <button className="btn-login ml-4" onClick={() => {
                 btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")
             }}>{btnName}</button>
