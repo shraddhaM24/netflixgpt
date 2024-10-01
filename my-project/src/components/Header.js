@@ -1,12 +1,16 @@
 import { useState , useContext} from "react";
 import {Link} from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = (props) =>{
 
   const[btnName,setBtnName] = useState("Login");
 
   const {loggedInUser} = useContext(UserContext);
+
+  //subscribing to the store using a selector
+  const cartItems = useSelector((store) => store.cart.items);
 
   const [mode,setMode] = useState('light');
     const toogleMode = () => {
@@ -48,7 +52,7 @@ const Header = (props) =>{
             <li className="nav-name ml-4"><Link to="/about">About us</Link></li>
             <li className="nav-name ml-4"><Link to="/contact">Contact us</Link></li>
             <li className="nav-name ml-4"><Link to="/grocery">Grocery</Link></li>
-            <li className="nav-name ml-4">Cart</li>
+            <li className="nav-name ml-4 text-lg font-bold">Cart - ({cartItems.length} items)</li>
             <button className="btn-login ml-4" onClick={() => {
                 btnName === "Login" ? setBtnName("Logout") : setBtnName("Login")
             }}>{btnName}</button>
