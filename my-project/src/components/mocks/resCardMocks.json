@@ -1,0 +1,57 @@
+{
+    "id": "48545",
+    "name": "Shiv Sagar Malad",
+    "cloudinaryImageId": "dpnzkxlvp7d8ed1ccy1i",
+    "locality": "Marve Road",
+    "areaName": "Malad West",
+    "costForTwo": "₹500 for two",
+    "cuisines": [
+        "Indian",
+        "Chinese"
+    ],
+    "avgRating": 4.3,
+    "veg": true,
+    "parentId": "183307",
+    "avgRatingString": "4.3",
+    "totalRatingsString": "12K+",
+    "sla": {
+        "deliveryTime": 21,
+        "lastMileTravel": 1.3,
+        "serviceability": "SERVICEABLE",
+        "slaString": "20-25 mins",
+        "lastMileTravelString": "1.3 km",
+        "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+        "nextCloseTime": "2024-10-07 00:15:00",
+        "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "aggregatedDiscountInfoV2": {},
+    "type": "F",
+    "badgesV2": {
+        "entityBadges": {
+            "imageBased": {},
+            "textBased": {},
+            "textExtendedBadges": {}
+        }
+    },
+    "differentiatedUi": {
+        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        "differentiatedUiMediaDetails": {
+            "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+            "lottie": {},
+            "video": {}
+        }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {},
+    "externalRatings": {
+        "aggregatedRating": {
+            "rating": "--"
+        }
+    },
+    "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+}
