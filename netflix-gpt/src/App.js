@@ -1,10 +1,12 @@
-import './App.css';
+import Body from './components/Body';
+import {Provider} from "react-redux";
+import appStore from './utilis/appStore';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className='font-bold text-green-400'>NetFlix</h1>
-    </div>
+    <Provider store={appStore}>
+      <Body />
+    </Provider>
   );
 }
 
