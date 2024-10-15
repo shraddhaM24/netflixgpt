@@ -1,13 +1,16 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { checkFormValidateData } from '../utilis/validate';
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword  } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile   } from "firebase/auth";
 import { auth } from '../utilis/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utilis/userSlice';
 
 const Login = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [signIn,setSignIn] = useState(true);
   const [errMessage,setErrMessage] = useState(null);
@@ -15,6 +18,7 @@ const Login = () => {
   const email = useRef(null)
   const password = useRef(null);
   const mobile = useRef(null);
+  const name = useRef(null);
 
   const toggleSignInForm = () => {
     setSignIn(!signIn);
@@ -28,12 +32,28 @@ const Login = () => {
     //Sign In & sign up logic
     if(!signIn){
       createUserWithEmailAndPassword(
-        auth, email.current.value, password.current.value
+        auth, email.current.value, password.current.value,name.current.value
       )
       .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        navigate("/browser");
+
+        updateProfile(user, {
+          displayName: name.current.value, 
+          photoURL: "https://example.com/jane-q-user/profile.jpg"
+        }).then(() => {
+          const {uid,email,displayName,photoURL} = auth.currentUser;
+          dispatch(addUser({
+            uid:uid, 
+            email:email, 
+            displayName: displayName,
+            photoURL: photoURL,
+          }));
+          navigate("/browser");
+        }).catch((error) => {
+          setErrMessage(error.message);
+        });
+
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -74,7 +94,7 @@ const Login = () => {
         <form onSubmit={(e) => e.preventDefault()}>
            {!signIn && 
               <>
-                <input type="text" placeholder='Full Name' className='p-4 my-4 w-full
+                <input ref={name} type="text" placeholder='Full Name' className='p-4 my-4 w-full
                 border-2 rounded-md bg-transparent border-gray-800' />
 
                 <input ref={mobile} type="text" placeholder='Mobile Number' className='p-4 my-4 w-full
