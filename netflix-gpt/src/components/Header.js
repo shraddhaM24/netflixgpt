@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {signOut } from "firebase/auth";
 import { auth } from '../utilis/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import {addUser, removeUser} from "../utilis/userSlice";
+import {useDispatch} from "react-redux";
 
 const Header = () => {
+
+  const dispatch = useDispatch();
 
   const [isMenuOpen,setIsMenuOpen] = useState(false);
   const navigate = useNavigate(); 
@@ -19,6 +24,25 @@ const Header = () => {
       // An error happened.
     });
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const {uid,email,displayName,photoURL} = user;
+          dispatch(addUser({
+            uid:uid, 
+            email:email, 
+            displayName: displayName,
+            photoURL: photoURL,
+          }));
+          navigate("/browser");
+        } else {
+          dispatch(removeUser());
+          navigate("/");
+        }
+      });
+      return () => unsubscribe();
+  },[]);
 
   const handleIconClick = () => {
     setIsMenuOpen(!isMenuOpen);

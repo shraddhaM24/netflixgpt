@@ -3,13 +3,11 @@ import Header from './Header'
 import { checkFormValidateData } from '../utilis/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile   } from "firebase/auth";
 import { auth } from '../utilis/firebase';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utilis/userSlice';
 
 const Login = () => {
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [signIn,setSignIn] = useState(true);
@@ -49,7 +47,6 @@ const Login = () => {
             displayName: displayName,
             photoURL: photoURL,
           }));
-          navigate("/browser");
         }).catch((error) => {
           setErrMessage(error.message);
         });
@@ -68,13 +65,11 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        navigate("/browser");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrMessage(errorMessage);
-        console.log(errMessage);
       });
 
     }
