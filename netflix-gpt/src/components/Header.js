@@ -1,12 +1,15 @@
 import React, { useState,useEffect } from 'react';
 import {signOut } from "firebase/auth";
 import { auth } from '../utilis/firebase';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import {addUser, removeUser} from "../utilis/userSlice";
 import {useDispatch} from "react-redux";
-import { LOGO_URL, USER_AVTAR } from '../utilis/constants';
+import { LOGO_URL, SUPPORTED_LNGUAGES, USER_AVTAR } from '../utilis/constants';
+import BrowseTvShows from './BrowseTvShows';
+import {toggleGptSearchView} from "../utilis/gptSlice";
+import { changeLanguage } from '../utilis/configSlice';
 
 const Header = () => {
 
@@ -14,8 +17,8 @@ const Header = () => {
 
   const [isMenuOpen,setIsMenuOpen] = useState(false);
   const navigate = useNavigate(); 
-  const user = useSelector((store) => store.user
-);
+  const user = useSelector((store) => store.user);
+  const showGptValue = useSelector((store) => store.gpt.showGptSearch);
 
   const handleClick = () => {
     signOut(auth).then(() => {
@@ -49,6 +52,19 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  }
+
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  }
+
+  const handleTvShows = () => {
+    console.log("aaaa00");
+    <BrowseTvShows/>
+  };
+
   return (
     <div className='absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-screen flex justify-between'>
         <div>
@@ -57,6 +73,26 @@ const Header = () => {
             alt="netflix-logo"
             />
         </div>
+        {user && (
+          <div className='flex'>
+            <p className='text-white px-2'><Link to="/">Home</Link></p>
+            <p className='text-white px-2 cursor-pointer' onClick={handleTvShows}>TV Shows</p>
+            <p className='text-white px-2'>Movies</p>
+            <div>
+              <button className='text-white rounded-lg bg-purple-800 py-2 px-2'
+              onClick={handleGptSearchClick}>GPT</button>
+            </div>
+            {
+              showGptValue && (
+                <select className='m-2 p-2 mt-0 h-10 bg-gray-700 text-white' onChange={handleLanguageChange}>
+                {
+                  SUPPORTED_LNGUAGES.map(lang =><option key={lang.identifier} value={lang.identifier}>{lang.name}</option> )
+                }
+              </select>
+              )
+            }
+          </div>
+        )}
         {user && (
           <div className='m-2 relative cursor-pointer'>
             <div onClick={handleIconClick}>

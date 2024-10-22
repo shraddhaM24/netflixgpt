@@ -32,6 +32,7 @@
     - TMBD Image cdn url
     - made the browse page with tailwind css
     - custom hooks usePopularMovies, useTopRated etc
+    - GPT search page
 
 # Features
     github pass - $onY@1234
