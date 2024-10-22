@@ -39,7 +39,10 @@ const Header = () => {
             displayName: displayName,
             photoURL: photoURL,
           }));
-          navigate("/browser");
+          // Only navigate to /browser if the current route is "/" or undefined (root route)
+          if (window.location.pathname === "/") {
+            navigate("/browser");
+          }
         } else {
           dispatch(removeUser());
           navigate("/");
@@ -60,11 +63,6 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   }
 
-  const handleTvShows = () => {
-    console.log("aaaa00");
-    <BrowseTvShows/>
-  };
-
   return (
     <div className='absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-screen flex justify-between'>
         <div>
@@ -76,13 +74,20 @@ const Header = () => {
         {user && (
           <div className='flex'>
             <p className='text-white px-2'><Link to="/">Home</Link></p>
-            <p className='text-white px-2 cursor-pointer' onClick={handleTvShows}>TV Shows</p>
+            <p className='text-white px-2 cursor-pointer'><Link to="/tvshows">TV Shows</Link></p>
             <p className='text-white px-2'>Movies</p>
             <div>
+              {/* <button className='text-white rounded-lg bg-purple-800 py-2 px-2'
+              onClick={handleGptSearchClick}>{showGptValue ? "Homepage": "GPT search"}</button> */}
               <button className='text-white rounded-lg bg-purple-800 py-2 px-2'
-              onClick={handleGptSearchClick}>GPT</button>
+              onClick={handleGptSearchClick}>GPT search</button>
             </div>
-            {
+            <select className='m-2 p-2 mt-0 h-10 bg-gray-700 text-white' onChange={handleLanguageChange}>
+                {
+                  SUPPORTED_LNGUAGES.map(lang =><option key={lang.identifier} value={lang.identifier}>{lang.name}</option> )
+                }
+              </select>
+            {/* {
               showGptValue && (
                 <select className='m-2 p-2 mt-0 h-10 bg-gray-700 text-white' onChange={handleLanguageChange}>
                 {
@@ -90,7 +95,7 @@ const Header = () => {
                 }
               </select>
               )
-            }
+            } */}
           </div>
         )}
         {user && (
