@@ -7,7 +7,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import {addUser, removeUser} from "../utilis/userSlice";
 import {useDispatch} from "react-redux";
 import { LOGO_URL, SUPPORTED_LNGUAGES, USER_AVTAR } from '../utilis/constants';
-import BrowseTvShows from './BrowseTvShows';
 import {toggleGptSearchView} from "../utilis/gptSlice";
 import { changeLanguage } from '../utilis/configSlice';
 

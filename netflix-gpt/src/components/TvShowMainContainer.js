@@ -9,6 +9,7 @@ const TvShowMainContainer = () => {
     if(!tvshows) return;
 
     const tvshowsList = tvshows[0];
+    // console.log(tvshows);
     const {original_name,overview,id} = tvshowsList;
 
   return (

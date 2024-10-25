@@ -8,9 +8,9 @@ const TvShowsBackground = ({tvShowId}) => {
     const dispatch = useDispatch();
     const trailerVideo = useSelector((store) => store.tvshows?.tvShowsTrailerVideo);
 
-    const getMoviesVideos = async () => {
+    const getTvShowsVideos = async () => {
         const response = await fetch(
-          'https://api.themoviedb.org/3/tv/8892/videos?language=en-US',
+          'https://api.themoviedb.org/3/tv/'+tvShowId+'/videos?language=en-US',
           API_OPTIONS
         );
         const json = await response.json();
@@ -33,7 +33,7 @@ const TvShowsBackground = ({tvShowId}) => {
       };
     
       useEffect(() => {
-        getMoviesVideos();
+        getTvShowsVideos();
       }, []);
 
       return (

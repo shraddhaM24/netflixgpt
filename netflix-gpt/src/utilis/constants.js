@@ -16,3 +16,6 @@ export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w780";
 
 export const SUPPORTED_LNGUAGES = [{identifier: "en", name: "English"},
   {identifier: "hindi", name: "Hindi"},{identifier: "marathi", name: "Mararthi"}];
+
+
+export const OPEN_AI_KEY = "";

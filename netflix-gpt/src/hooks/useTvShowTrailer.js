@@ -8,10 +8,10 @@ const useTvShowTrailer = (tvShowId) => {
     const dispatch = useDispatch();
  
     const getTvShowsVideos = async () => {
-        const data = await fetch('https://api.themoviedb.org/3/tv/8892/videos?language=en-US',API_OPTIONS);
+        const data = await fetch('https://api.themoviedb.org/3/tv/'+tvShowId+'/videos?language=en-US',API_OPTIONS);
         const json = await data.json();
 
-        console.log(json);
+        // console.log("test"+data);
 
         const filterData = json.results.filter((video) => video.type === "Trailer");
         const trailer =  filterData.length == 0 ? filterData[0] : json.results[0]; // if there is no trailer then take the 1st video
