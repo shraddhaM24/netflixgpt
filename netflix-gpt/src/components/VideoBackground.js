@@ -8,27 +8,39 @@ const VideoBackground = ({ movieId }) => {
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
 
   const getMoviesVideos = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-      API_OPTIONS
-    );
-    const json = await response.json();
-
-    // Filter for YouTube videos of type 'Trailer'
-    const filterData = json.results.filter(
-      (video) => video.type === 'Trailer' && video.site === 'YouTube'
-    );
-
-    // If there's a valid trailer, select the first one, or fallback to the first video
-    const trailer = filterData.length > 0 ? filterData[0] : null;
-
-    if (trailer) {
-      dispatch(addTrailerVideos(trailer));
-    } else {
-      console.log('No embeddable trailers found.');
-      dispatch(addTrailerVideos(null)); // Set to null if no valid trailer
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+        API_OPTIONS
+      );
+  
+      // Check if the response is okay
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const json = await response.json();
+  
+      // Check if results exist and filter for YouTube trailers
+      const filterData = json.results?.filter(
+        (video) => video.type === 'Trailer' && video.site === 'YouTube'
+      ) || []; // Default to an empty array if results is undefined
+  
+      // If there's a valid trailer, select the first one
+      const trailer = filterData.length > 0 ? filterData[0] : null;
+  
+      if (trailer) {
+        dispatch(addTrailerVideos(trailer));
+      } else {
+        console.log('No embeddable trailers found.');
+        dispatch(addTrailerVideos(null)); // Set to null if no valid trailer
+      }
+    } catch (error) {
+      console.error('Error fetching movie videos:', error);
+      dispatch(addTrailerVideos(null)); // Set to null on error
     }
   };
+  
 
   useEffect(() => {
     getMoviesVideos();

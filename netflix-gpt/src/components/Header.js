@@ -74,7 +74,7 @@ const Header = () => {
           <div className='flex'>
             <p className='text-white px-2'><Link to="/">Home</Link></p>
             <p className='text-white px-2 cursor-pointer'><Link to="/tvshows">TV Shows</Link></p>
-            <p className='text-white px-2'>Movies</p>
+            <p className='text-white px-2'><Link to="/movie">Movies</Link></p>
             <div>
               {/* <button className='text-white rounded-lg bg-purple-800 py-2 px-2'
               onClick={handleGptSearchClick}>{showGptValue ? "Homepage": "GPT search"}</button> */}
