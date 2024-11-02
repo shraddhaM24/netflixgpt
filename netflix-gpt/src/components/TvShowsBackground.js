@@ -9,29 +9,33 @@ const TvShowsBackground = ({tvShowId}) => {
     const trailerVideo = useSelector((store) => store.tvshows?.tvShowsTrailerVideo);
 
     const getTvShowsVideos = async () => {
-        const response = await fetch(
-          'https://api.themoviedb.org/3/tv/'+tvShowId+'/videos?language=en-US',
-          API_OPTIONS
-        );
-        const json = await response.json();
-        console.log(json);
-    
-        // Filter for YouTube videos of type 'Trailer'
-        const filterData = json.results.filter(
-          (video) => video.type === 'Trailer' && video.site === 'YouTube'
-        );
-    
-        // If there's a valid trailer, select the first one, or fallback to the first video
-        const trailer = filterData.length > 0 ? filterData[0] : null;
-    
-        if (trailer) {
-          dispatch(addTvShowsTrailerVideo(trailer));
-        } else {
-          console.log('No embeddable trailers found.');
-          dispatch(addTvShowsTrailerVideo(null)); // Set to null if no valid trailer
-        }
-      };
-    
+      try {
+          const response = await fetch(
+            'https://api.themoviedb.org/3/tv/' + tvShowId + '/videos?language=en-US',
+            API_OPTIONS
+          );
+          const json = await response.json();
+  
+          // Ensure json.results exists and is an array
+          const filterData = json.results?.filter(
+            (video) => video.type === 'Trailer' && video.site === 'YouTube'
+          ) || [];
+  
+          // If there's a valid trailer, select the first one, or fallback to null
+          const trailer = filterData.length > 0 ? filterData[0] : null;
+  
+          if (trailer) {
+            dispatch(addTvShowsTrailerVideo(trailer));
+          } else {
+            console.log('No embeddable trailers found.');
+            dispatch(addTvShowsTrailerVideo(null)); // Set to null if no valid trailer
+          }
+      } catch (error) {
+          console.error('Failed to fetch TV show videos:', error);
+          dispatch(addTvShowsTrailerVideo(null)); // Handle error by setting to null
+      }
+  };
+  
       useEffect(() => {
         getTvShowsVideos();
       }, []);

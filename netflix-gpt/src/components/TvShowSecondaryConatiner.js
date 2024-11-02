@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import MovieList from './MovieList';
 import lang from '../utilis/languageConstant';
+import TvShowList from './TvShowList';
 
 const TvShowSecondaryConatiner = () => {
 
@@ -12,7 +13,7 @@ const TvShowSecondaryConatiner = () => {
     tvShows.airingToday && (
         <div className='bg-black px-5'>
             <div className=' -mt-[90px] relative z-20'>
-                <MovieList title="Airing Today" movies={tvShows.airingToday} />
+                <TvShowList title="Airing Today" movies={tvShows.airingToday} />
             </div>
             {/* <MovieList title="Top Rated" movies={tvShows.topRatedTvShows} /> */}
         </div>  

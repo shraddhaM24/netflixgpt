@@ -25,7 +25,7 @@ const MovieDetailsMainContainer = () => {
   },[]);
 
   return (
-    <div className='watch-movie'>
+    <div className='watch-movie bg-black'>
       <div>
         <VideoBackground movieId={id} />
         <MovieDetailsBackground original_title={original_title} release_date={release_date} overview={overview} />

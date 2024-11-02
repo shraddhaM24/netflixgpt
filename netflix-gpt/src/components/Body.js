@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import TvShows from './TvShows'
 import MovieDetails from './MovieDetails'
 import MainContainer from './MainContainer'
+import TvShowDetails from './TvShowDetails'
 
 const Body = () => {
 
@@ -28,6 +29,10 @@ const Body = () => {
         {
             path: "/movie/:id",
             element: <MovieDetails/>
+        },
+        {
+            path: "/tvshow/:id",
+            element: <TvShowDetails/>
         }
     ]);
 
